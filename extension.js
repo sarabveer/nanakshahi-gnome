@@ -95,4 +95,7 @@ function disable() {
     Mainloop.source_remove(sourceId);
     sourceId = null;
   }
+  if(text) {
+    text = null;
+  }
 }
