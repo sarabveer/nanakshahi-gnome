@@ -1,13 +1,13 @@
 {
-  "description": "Shows nepali date on the panel.",
-  "name": "Nepali Date",
+  "description": "Shows Nanakshahi date on the panel.",
+  "name": "Nanakshahi Date",
   "shell-version": [
     "40",
     "41",
     "42",
     "43"
   ],
-  "url": "https://github.com/Biplab-Dutta/Nepali_Date",
-  "uuid": "nepali-date@biplab",
-  "version": 17
+  "url": "https://github.com/sarabveer/nanakshahi-gnome",
+  "uuid": "nanakshahi-date@sarabveer",
+  "version": 1
 }
