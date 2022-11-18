@@ -16,29 +16,30 @@ function _getNanakshahiDate() {
   // Taken from:
   // https://github.com/sarabveer/nanakshahi-js/blob/fc9b49ca67d1947fa3fba74c7cddf39535698326/lib/getNanakshahiDate.js
 
-  months = ['Chet', 'Vaisakh', 'Jeth', 'Harh', 'Savan', 'Bhadon', 'Assu', 'Katak', 'Maghar', 'Poh', 'Magh', 'Phagun'];
+  const months = ['Chet', 'Vaisakh', 'Jeth', 'Harh', 'Savan', 'Bhadon', 'Assu', 'Katak', 'Maghar', 'Poh', 'Magh', 'Phagun'];
 
   // NS Month Offsets
-  monthOffsets = [ 14, 14, 15, 15, 16, 16, 15, 15, 14, 14, 13, 12 ];
+  const monthOffsets = [ 14, 14, 15, 15, 16, 16, 15, 15, 14, 14, 13, 12 ];
 
   // Current Date
-  gregorianDate = new Date();
-  year = gregorianDate.getFullYear();
+  const gregorianDate = new Date();
+  const year = gregorianDate.getFullYear();
 
   // Calculate Nanakshahi Year - March 14 (1 Chet) Nanakshahi New Year
-  nsYear = gregorianDate >= new Date( year, 2, 14 )
+  const nsYear = gregorianDate >= new Date( year, 2, 14 )
     ? year - 1468
     : year - 1469;
 
   // Calculate Nanakshahi Date
-  nsMonth = ( gregorianDate.getMonth() + 9 ) % 12;
-  nsNextMonth = ( nsMonth + 1 ) % 12;
+  let nsMonth = ( gregorianDate.getMonth() + 9 ) % 12;
+  const nsNextMonth = ( nsMonth + 1 ) % 12;
+  let nsDate;
 
   if ( gregorianDate.getDate() >= monthOffsets[ nsNextMonth ] ) {
     nsMonth = nsNextMonth;
     nsDate = gregorianDate.getDate() - monthOffsets[ nsNextMonth ] + 1;
   } else {
-    gregorianMonths = [
+    const gregorianMonths = [
       31,
       leapYear( year) ? 29 : 28,
       31,
@@ -56,7 +57,7 @@ function _getNanakshahiDate() {
       - monthOffsets[ nsMonth ] + gregorianDate.getDate() + 1;
   }
 
-  date = "|          " + nsDate + " " + months[ nsMonth ] + ", " + nsYear + " N.S.";
+  const date = "|          " + nsDate + " " + months[ nsMonth ] + ", " + nsYear + " N.S.";
   text = new St.Label({
     style_class: 'nanakshahi-label',
     y_expand: true,
@@ -64,7 +65,7 @@ function _getNanakshahiDate() {
     text: date
   });
   button.set_child(text);
-  sourceId = Mainloop.timeout_add_seconds(1, _getNanakshahDate);
+  sourceId = Mainloop.timeout_add_seconds(1, _getNanakshahiDate);
 }
 
 function init() { }
